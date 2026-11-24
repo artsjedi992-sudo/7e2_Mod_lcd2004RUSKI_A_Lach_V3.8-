@@ -165,10 +165,10 @@ private:
       case 0x041A: return 'K'; case 0x041C: return 'M'; case 0x041D: return 'H';
       case 0x041E: return 'O'; case 0x0420: return 'P'; case 0x0421: return 'C';
       case 0x0422: return 'T'; case 0x0425: return 'X';
-      case 0x0430: return 'a'; case 0x0432: return 'B'; case 0x0435: return 'e';
-      case 0x043A: return 'K'; case 0x043C: return 'M'; case 0x043D: return 'H';
+      case 0x0430: return 'a'; case 0x0432: return 'b'; case 0x0435: return 'e';
+      case 0x043A: return 'k'; case 0x043C: return 'm'; case 0x043D: return 'h';
       case 0x043E: return 'o'; case 0x0440: return 'p'; case 0x0441: return 'c';
-      case 0x0442: return 'T'; case 0x0443: return 'y'; case 0x0445: return 'x';
+      case 0x0442: return 't'; case 0x0443: return 'y'; case 0x0445: return 'x';
     }
     return 0;
   }
