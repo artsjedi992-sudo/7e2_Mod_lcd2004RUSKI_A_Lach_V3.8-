@@ -16,8 +16,9 @@ void Print()
       lcd.print("   в нейтральное    "); 
       lcd.setCursor(0, 3);
       lcd.print("     положение      ");
-      return;   
-   } 
+      lcd.flush();
+       return;
+} 
   
    if      (err_1_flag == true)
    {
@@ -29,8 +30,9 @@ void Print()
       lcd.print("   УСТАНОВИТЕ УПОРЫ!"); 
       lcd.setCursor(0, 3);
       lcd.print("                    ");
-      return;   
-   }
+      lcd.flush();
+       return;
+}
    else if (err_2_flag == true)
    {
       lcd.setCursor(0, 0);
@@ -41,8 +43,9 @@ void Print()
       lcd.print("УСТАНОВИТЕ СУППОРТ  ");
       lcd.setCursor(0, 3);
       lcd.print(" В ИСХОДНУЮ ПОЗИЦИЮ!");      
-      return;   
-   }
+      lcd.flush();
+       return;
+}
    else if (Complete_flag == true)
    {
       lcd.setCursor(0, 0);
@@ -53,8 +56,9 @@ void Print()
       lcd.print("                    ");
       lcd.setCursor(0, 3);
       lcd.print("                    ");       
-      return;   
-   }  
+      lcd.flush();
+       return;
+}  
    else if (isPausedAfterStep == true)
    {
       lcd.setCursor(0, 0);
@@ -65,8 +69,9 @@ void Print()
       lcd.print("  нажмите верхнюю   ");
       lcd.setCursor(0, 3);
       lcd.print("   кнопку меню \3    ");       
-      return;   
-   }   
+      lcd.flush();
+       return;
+}   
      
      if ((Mode == Mode_Feed    && SelectMenu == 3) || 
          (Mode == Mode_Cone_L  && SelectMenu == 3) ||
@@ -716,4 +721,5 @@ void Print()
    }
       
  
+  lcd.flush();
 }
