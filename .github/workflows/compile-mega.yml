@@ -33,3 +33,5 @@ jobs:
       - name: Compile for Arduino Mega 2560
         run: |
           arduino-cli compile --fqbn arduino:avr:mega --warnings all "$RUNNER_TEMP/7e2_Mod_lcd2004RU_A_Lach_V3.8_s"
+
+# Re-run compile after LCD include-order fix.
