@@ -1,3 +1,5 @@
+     - Руски Менюта -
+     
 digital_feed_7e2 электронная гитара
 
 LCD2004 Russian text:
