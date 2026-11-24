@@ -251,8 +251,8 @@ static_assert(h > 1, "Неверно задано значение MAX_aFEED");
 
 #include <avr/pgmspace.h>
 #include <util/delay.h>
-#include "LiquidCrystalRus.h"
-LiquidCrystalRus lcd(8, 9, 10, 11, 12, 13);
+#include "RusLCD2004.h"
+RusLCD2004 lcd(8, 9, 10, 11, 12, 13);
 char LCD_Row_1[21];
 char LCD_Row_2[21];
 char LCD_Row_3[21];
@@ -262,75 +262,6 @@ char LCD_Row_6[21];
 char LCD_Row_7[21];
 char LCD_Row_8[21];
 char LCD_Row_9[21];
-byte strelka_vlevo[8] = 
-{
-  B00000,
-  B00100,
-  B01000,
-  B11111,
-  B01000,
-  B00100,
-  B00000,
-  B00000,
-};
-byte strelka_vpravo[8] = 
-{
-  0b00000,
-  0b00100,
-  0b00010,
-  0b11111,
-  0b00010,
-  0b00100,
-  0b00000,
-  0b00000
-};
-byte strelka_vverh[8] = 
-{
-  B00000,
-  B00100,
-  B01110,
-  B10101,
-  B00100,
-  B00100,
-  B00000,
-  B00000,
-};
-byte strelka_vniz[8] = 
-{
-  B00000,
-  B00100,
-  B00100,
-  B10101,
-  B01110,
-  B00100,
-  B00000,
-  B00000,
-};
-byte znak_diametr[8] = 
-{
-  0b00001,
-  0b01110,
-  0b10011,
-  0b10101,
-  0b11001,
-  0b01110,
-  0b10000,
-  0b00000
-};
-byte znak_gradus[8] = 
-{
-  0b01100,
-  0b10010,
-  0b10010,
-  0b01100,
-  0b00000,
-  0b00000,
-  0b00000,
-  0b00000
-};
-
-
-
 #define Beeper_Init()          DDRH = B01100010;\
                                PORTH = B10011101    // LCD-H5,H6 Buzzer-PH1_Pin16
 #define Beeper_On()            PORTH &= ~(1<<1)     // Pin16 0
@@ -849,20 +780,10 @@ void setup()
   lcd.print("  токарным станком  ");
   lcd.setCursor(0, 3);
   lcd.print("        7e2 V3.8_s");
+  lcd.flush();
   
   
   DDRG = B11111111;
-
-  
-  lcd.createChar(1, strelka_vlevo);
-  lcd.createChar(2, strelka_vpravo);
-  lcd.createChar(3, strelka_vverh);
-  lcd.createChar(4, strelka_vniz);
-  lcd.createChar(5, znak_gradus);
-  lcd.createChar(6, znak_diametr);
-
-            
-  
   TIMSK0 = 0;
      
   // ***** Timer0 ***** // ***** Тахометр *****
