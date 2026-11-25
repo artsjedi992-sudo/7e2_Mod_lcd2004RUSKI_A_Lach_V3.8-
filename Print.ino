@@ -247,7 +247,7 @@ void Print()
              snprintf(LCD_Row_3, 3, "%2d", PASS_FINISH + Pass_Fin);
              lcd.print(LCD_Row_3);
              lcd.setCursor(0, 1);
-             lcd.print("Колич заходов: \3\4 ");
+             lcd.print("Колич zаходов: \3\4 ");
              snprintf(LCD_Row_4, 3, "%2d", Ph);
              lcd.print(LCD_Row_4);
              lcd.setCursor(0, 2); 
