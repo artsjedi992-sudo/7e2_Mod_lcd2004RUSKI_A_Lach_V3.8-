@@ -1,0 +1,46 @@
+name: Compile Arduino Mega LCD2004 Russian test
+
+on:
+  push:
+    branches:
+      - test/russian-lcd2004
+  workflow_dispatch:
+
+jobs:
+  compile-mega:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install Arduino CLI
+        uses: arduino/setup-arduino-cli@v2
+
+      - name: Install AVR platform and LiquidCrystal
+        run: |
+          arduino-cli core update-index
+          arduino-cli core install arduino:avr
+          arduino-cli lib install LiquidCrystal
+
+      - name: Prepare sketch folder
+        run: |
+          SKETCH_DIR="$RUNNER_TEMP/7e2_Mod_lcd2004RU_A_Lach_V3.8_s"
+          mkdir -p "$SKETCH_DIR"
+          cp ./*.ino ./*.h "$SKETCH_DIR/"
+          cp ./*.cpp "$SKETCH_DIR/" 2>/dev/null || true
+          rm -f "$SKETCH_DIR/LiquidCrystalRus.cpp" "$SKETCH_DIR/LiquidCrystalRus.h"
+
+      - name: Compile for Arduino Mega 2560
+        run: |
+          mkdir -p "$RUNNER_TEMP/hex"
+          arduino-cli compile --fqbn arduino:avr:mega --warnings all --output-dir "$RUNNER_TEMP/hex" "$RUNNER_TEMP/7e2_Mod_lcd2004RU_A_Lach_V3.8_s"
+          echo "Generated HEX files:"
+          ls -lh "$RUNNER_TEMP/hex"/*.hex
+
+      - name: Upload HEX artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: Arduino-Mega-HEX
+          path: ${{ runner.temp }}/hex/*.hex
+          if-no-files-found: error
+          retention-days: 30
